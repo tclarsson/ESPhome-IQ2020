@@ -45,6 +45,7 @@ namespace iq2020_climate {
 		publish_state();
 	}
 
+/*
 	climate::ClimateTraits IQ2020Climate::traits() {
 		auto traits = climate::ClimateTraits();
 		traits.add_feature_flags(climate::CLIMATE_SUPPORTS_CURRENT_TEMPERATURE);
@@ -69,6 +70,26 @@ namespace iq2020_climate {
 
 		return traits;
 	}
+*/
+climate::ClimateTraits IQ2020Climate::traits() {
+  climate::ClimateTraits traits;
+
+  traits.set_supports_current_temperature(true);
+  traits.set_supports_action(true);
+
+  traits.set_supported_modes({
+      climate::CLIMATE_MODE_OFF,
+      climate::CLIMATE_MODE_HEAT
+  });
+
+			traits.set_visual_min_temperature(26.5);
+			traits.set_visual_max_temperature(40);
+			traits.set_visual_target_temperature_step(0.5);
+			traits.set_visual_current_temperature_step(0.5);
+
+  return traits;
+}
+
 
 	void IQ2020Climate::dump_config() {
 		ESP_LOGCONFIG(TAG, "Empty custom climate");
